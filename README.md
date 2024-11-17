@@ -1,12 +1,16 @@
 # café-merci-v3
 
 
-
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This project is a web application built using Laravel and React. It allows users to make reservations and view available products. Follow the steps below to get started:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Clone the repository: `git clone https://gitlab.com/ouladaliabidin8/cafe-merci-v3.git`
+- Install dependencies: 
+  - For backend (Laravel): `composer install`
+  - For frontend (React): `npm install`
+- Set up your environment variables in the `.env` file.
+
 
 ## Add your files
 
@@ -18,6 +22,10 @@ cd existing_repo
 git remote add origin https://gitlab.com/ouladaliabidin8/cafe-merci-v3.git
 git branch -M main
 git push -uf origin main
+
+- Create or upload files via the GitLab UI.
+- Add files using the command line with `git add <file>` or `git push`.
+
 ```
 
 ## Integrate with your tools
