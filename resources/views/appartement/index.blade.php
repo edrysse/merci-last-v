@@ -1,139 +1,41 @@
 @extends('client.layout')
+
 @section('content')
-
-
 <div class="container">
     <h1 class="title">Nos Chambres</h1>
     <div class="card-container">
-        <!-- Card 1 -->
+        @foreach($rooms as $room)
         <div class="card">
-            <img src="{{ asset('upload/img/s1.avif') }}" alt="Chambre 1">
+            <img src="{{ asset('upload/img/' . $room->image) }}" alt="{{ $room->name }}">
             <div class="card-info">
-                <h3>Chambre Deluxe</h3>
-                <p>Profitez d'un confort exceptionnel avec vue sur la ville.</p>
-                <p class="price">Prix: 80€ / nuit</p>
-                <div class="stars">★★★★☆</div>
-                <p class="extra-info">WiFi gratuit et petit déjeuner inclus</p>
+                <h3>{{ $room->name }}</h3>
+                <p>{{ $room->description }}</p>
+                <p class="price">Prix: {{ $room->price }}€ / nuit</p>
+                <div class="stars">{{ str_repeat('★', $room->rating) }}{{ str_repeat('☆', 5 - $room->rating) }}</div>
+                <p class="extra-info">{{ $room->extra_info }}</p>
                 <button class="btn" onclick="openModal()">Réserver</button>
             </div>
         </div>
-        <!-- Card 2 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s2.avif') }}" alt="Chambre 2">
-            <div class="card-info">
-                <h3>Chambre Standard</h3>
-                <p>Un espace chaleureux et accueillant pour vos séjours.</p>
-                <p class="price">Prix: 60€ / nuit</p>
-                <div class="stars">★★★☆☆</div>
-                <p class="extra-info">Climatisation et télévision incluse</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s3.avif') }}" alt="Chambre 3">
-            <div class="card-info">
-                <h3>Chambre Confort</h3>
-                <p>Ambiance chaleureuse pour un séjour agréable.</p>
-                <p class="price">Prix: 70€ / nuit</p>
-                <div class="stars">★★★☆☆</div>
-                <p class="extra-info">Télévision et minibar</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s4.avif') }}" alt="Chambre 4">
-            <div class="card-info">
-                <h3>Suite Exécutive</h3>
-                <p>Luxueuse suite avec salon privé.</p>
-                <p class="price">Prix: 120€ / nuit</p>
-                <div class="stars">★★★★★</div>
-                <p class="extra-info">Salle de bain en marbre et jacuzzi</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 5 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s5.avif') }}" alt="Chambre 5">
-            <div class="card-info">
-                <h3>Chambre Économique</h3>
-                <p>Confort essentiel à un prix attractif.</p>
-                <p class="price">Prix: 50€ / nuit</p>
-                <div class="stars">★★☆☆☆</div>
-                <p class="extra-info">Salle de bain commune</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 6 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s6.avif') }}" alt="Chambre 6">
-            <div class="card-info">
-                <h3>Chambre Supérieure</h3>
-                <p>Vue magnifique sur le parc.</p>
-                <p class="price">Prix: 90€ / nuit</p>
-                <div class="stars">★★★★☆</div>
-                <p class="extra-info">Balcon privé</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 7 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s7.avif') }}" alt="Chambre 7">
-            <div class="card-info">
-                <h3>Suite Présidentielle</h3>
-                <p>Expérience unique avec vue panoramique.</p>
-                <p class="price">Prix: 200€ / nuit</p>
-                <div class="stars">★★★★★</div>
-                <p class="extra-info">Salle de gym privée et spa</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 8 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s8.avif') }}" alt="Chambre 8">
-            <div class="card-info">
-                <h3>Chambre Familiale</h3>
-                <p>Idéale pour les familles avec enfants.</p>
-                <p class="price">Prix: 110€ / nuit</p>
-                <div class="stars">★★★★☆</div>
-                <p class="extra-info">Espace de jeux pour enfants</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
-        <!-- Card 9 -->
-        <div class="card">
-            <img src="{{ asset('upload/img/s9.avif') }}" alt="Chambre 9">
-            <div class="card-info">
-                <h3>Studio</h3>
-                <p>Compact et fonctionnel pour de courts séjours.</p>
-                <p class="price">Prix: 55€ / nuit</p>
-                <div class="stars">★★★☆☆</div>
-                <p class="extra-info">Coin cuisine</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <div id="reservationModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Réservez votre chambre</h2>
-        <form action="{{ route('Apparetementstore') }}" method="POST">
-            @csrf
-            <input type="text" name="nom" placeholder="Nom" required>
-            <input type="text" name="prenom" placeholder="Prénom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="adresse" placeholder="Adresse">
-            <input type="text" name="ville" placeholder="Ville" required>
-            <input type="text" name="codePostal" placeholder="Code Postal" required>
-            <input type="text" name="telephone" placeholder="Téléphone" required>
-            <button type="submit">Confirmer la réservation</button>
-        </form>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Réservez votre chambre</h2>
+            <form action="{{ route('Apparetementstore') }}" method="POST">
+                @csrf
+                <input type="text" name="nom" placeholder="Nom" required>
+                <input type="text" name="prenom" placeholder="Prénom" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="adresse" placeholder="Adresse">
+                <input type="text" name="ville" placeholder="Ville" required>
+                <input type="text" name="codePostal" placeholder="Code Postal" required>
+                <input type="text" name="telephone" placeholder="Téléphone" required>
+                <button type="submit">Confirmer la réservation</button>
+            </form>
+        </div>
     </div>
-</div>
-
-
 </div>
 
 <style>
@@ -326,6 +228,5 @@ body {
         }
     }
 </script>
-
 
 @endsection

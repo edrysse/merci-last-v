@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\CreateAppartement ;
 use Illuminate\Http\Request;
 
 class AppartementController extends Controller
 {
     public function index()
     {
-        return view("appartement.index");
+        $rooms = CreateAppartement::all();
+        return view('appartement.index', compact('rooms'));
     }
 
     /**

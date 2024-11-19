@@ -9,8 +9,8 @@ class CreateAppartementController extends Controller
     //
     public function index()
     {
-        $appartements = CreateAppartement::all();
-        return view('admin.index', compact('appartements'));
+        $rooms = CreateAppartement::all();
+        return view('appartement.index', compact('rooms'));
     }
 
     public function create()
@@ -20,55 +20,32 @@ class CreateAppartementController extends Controller
 
     public function store(Request $request)
 {
-    // Afficher toutes les données envoyées dans la requête pour vérifier
-    dd($request->all());
-
-    $request->validate([
+    // Valider les données envoyées par le formulaire
+    $validatedData = $request->validate([
         'nom' => 'required|string|max:255',
         'description' => 'required|string',
         'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,avif|max:2048',
         'prix' => 'required|numeric',
         'etoiles' => 'nullable|integer|min:1|max:5',
-        'extra_info' => 'nullable|string' 
+        'extra_info' => 'nullable|string',
     ]);
 
     // Traiter l'image si elle existe
     if ($request->hasFile('image')) {
         // Stocker l'image dans public/upload/img
-        $imagePath = $request->file('image')->store('upload/img', 'public');
-        // Vérifier le chemin de l'image
-        dd($imagePath);
-    } else {
-        $imagePath = null;
-        // Vérifier que l'image est nulle
-        dd('No image uploaded');
+        $validatedData['image'] = $request->file('image')->store('upload/img', 'public');
     }
 
-    // Afficher les données avant de créer l'appartement
-    dd([
-        'nom' => $request->nom,
-        'description' => $request->description,
-        'image' => $imagePath,
-        'prix' => $request->prix,
-        'etoiles' => $request->etoiles ?? 3,
-        'extra_info' => $request->extra_info,
-    ]);
+    // Ajouter une valeur par défaut pour les étoiles si non fournies
+    $validatedData['etoiles'] = $validatedData['etoiles'] ?? 3;
 
-    // Créer l'appartement
-    CreateAppartement::create([
-        'nom' => $request->nom,
-        'description' => $request->description,
-        'image' => $imagePath,
-        'prix' => $request->prix,
-        'etoiles' => $request->etoiles ?? 3,
-        'extra_info' => $request->extra_info,
-    ]);
+    // Créer l'appartement avec les données validées
+    CreateAppartement::create($validatedData);
 
-    // Vérifier si tout est bien créé
-    dd('Appartement créé avec succès !');
-
-    return redirect()->route('admin.index')->with('success', 'Appartement créé avec succès !');
+    // Rediriger vers l'index avec un message de succès
+    return redirect()->route('Apparetementindex')->with('success', 'Appartement créé avec succès !');
 }
+
 
 
 
@@ -93,7 +70,7 @@ class CreateAppartementController extends Controller
         $appartement = CreateAppartement::findOrFail($id);
         $appartement->update($validated);
 
-        return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès');
+        return redirect()->route('Apparetementindex')->with('success', 'Appartement mis à jour avec succès');
     }
 
     public function destroy($id)
@@ -101,6 +78,6 @@ class CreateAppartementController extends Controller
         $appartement = CreateAppartement::findOrFail($id);
         $appartement->delete();
 
-        return redirect()->route('appartement.index')->with('success', 'Appartement supprimé avec succès');
+        return redirect()->route('Apparetementindex')->with('success', 'Appartement supprimé avec succès');
     }
 }

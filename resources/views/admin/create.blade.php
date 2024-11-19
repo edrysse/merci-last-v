@@ -5,26 +5,64 @@
 
     <form action="{{ route('appartements.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
+
+    <!-- Afficher les erreurs -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- Champ Nom -->
     <label for="nom">Nom :</label>
     <input type="text" id="nom" name="nom" value="{{ old('nom') }}" required>
+    @error('nom')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Champ Description -->
     <label for="description">Description :</label>
-    <textarea id="description" name="description" value="{{ old('description') }}" required> </textarea>
+    <textarea id="description" name="description" value="{{ old('description') }}" required></textarea>
+    @error('description')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Champ Image -->
     <label for="image">Image (optionnelle) :</label>
     <input type="file" id="image" name="image" accept="image/*">
+    @error('image')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Champ Prix -->
     <label for="prix">Prix :</label>
     <input type="number" id="prix" name="prix" step="0.01" value="{{ old('prix') }}" required>
+    @error('prix')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Champ Étoiles -->
     <label for="etoiles">Étoiles (sur 5) :</label>
     <input type="number" id="etoiles" name="etoiles" min="1" max="5" value="{{ old('etoiles', 3) }}">
+    @error('etoiles')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Champ Informations Supplémentaires -->
     <label for="extra_info">Informations Supplémentaires :</label>
     <input type="text" id="extra_info" name="extra_info" value="{{ old('extra_info') }}">
+    @error('extra_info')
+        <span class="error">{{ $message }}</span>
+    @enderror
 
+    <!-- Bouton de Soumission -->
     <button type="submit" class="btn">Créer</button>
 </form>
+
 <style>
         /* Styles généraux */
 body {
