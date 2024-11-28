@@ -159,6 +159,6 @@ form > div:last-child {
     margin-top: 20px;
 }
 
-        
+
     </style>
 @endsection

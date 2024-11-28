@@ -1,29 +1,69 @@
 @extends('client.layout')
 
 @section('content')
+@include('client.includes.aside')
+<base href="/public">
+<!-- Title Page -->
+<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
+    style="background-image: url(clientpage/images/bg-title-page-03.jpg);">
+    <div style="    display: flex;
+        flex-direction: column;
+        align-items: center;">
+            <h2 class="tit6 t-center">
+                restaurant
+            </h2>
+
+            <div class="mb-4" >
+                {{-- Merci Laayoune --}}
+                <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" >
+            </div>
+
+            <div style="    display: flex;
+            align-items: center;">
+                <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
+                <a href="https://www.instagram.com/mercilaayoune1"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/instagram-merci.png" alt="" width="22px"></a>
+                <a href="https://www.tiktok.com/@mercilaayoune"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/tik-tok-merci.png" alt="" width="22px"></a>
+                <a href="https://t.snapchat.com/Df0EWYBp"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/snapchat.png" alt="" width="22px"></a>
+                <a href="https://shorturl.at/cnrt1"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/pin-merci.png" alt="" width="22px"></a>
+            </div>
+
+    </div>
+</section>
 <div class="container">
-    <h1 class="title">Nos Chambres</h1>
+    <div class="title-section-ourmenu t-center m-b-22">
+        <span class="tit2 t-center">
+            Découvrir
+        </span>
+
+        <h3 class="tit5 t-center m-t-2">
+            notre chambres        </h3>
+    </div>
     <div class="card-container">
         @foreach($rooms as $room)
-        <div class="card">
-            <img src="{{ asset('upload/img/' . $room->image) }}" alt="{{ $room->name }}">
-            <div class="card-info">
-                <h3>{{ $room->name }}</h3>
-                <p>{{ $room->description }}</p>
-                <p class="price">Prix: {{ $room->price }}€ / nuit</p>
-                <div class="stars">{{ str_repeat('★', $room->rating) }}{{ str_repeat('☆', 5 - $room->rating) }}</div>
-                <p class="extra-info">{{ $room->extra_info }}</p>
-                <button class="btn" onclick="openModal()">Réserver</button>
+        <form action="{{ route('appartement.appartementValid') }}">
+            <div class="card">
+                <img src="{{ asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
+                <div class="card-info">
+                    <h3>{{ $room->nom }}</h3>
+                    <p>{{ $room->description }}</p>
+                    <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
+                    <div class="stars">{{ str_repeat('★', $room->etoiles) }}{{ str_repeat('☆', 5 - $room->etoiles) }}</div>
+                    <p class="extra-info">{{ $room->extra_info }}</p>
+                    <button class="btn">Réserver</button>
+                </div>
             </div>
-        </div>
+        </form>
         @endforeach
+
+
+
     </div>
 
     <div id="reservationModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Réservez votre chambre</h2>
-            <form action="{{ route('Apparetementstore') }}" method="POST">
+            <form action="{{ route('reservations.store') }}" method="POST">
                 @csrf
                 <input type="text" name="nom" placeholder="Nom" required>
                 <input type="text" name="prenom" placeholder="Prénom" required>
@@ -32,11 +72,15 @@
                 <input type="text" name="ville" placeholder="Ville" required>
                 <input type="text" name="codePostal" placeholder="Code Postal" required>
                 <input type="text" name="telephone" placeholder="Téléphone" required>
+                <input type="hidden" id="room_id" name="room_id" value="">
+
                 <button type="submit">Confirmer la réservation</button>
             </form>
         </div>
     </div>
 </div>
+
+
 
 <style>
      * {
@@ -52,10 +96,11 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
-    margin: 30px auto;
+    justify-items: center;
     text-align: center;
+    margin-right: 2%;
 }
 
 .title {
@@ -77,7 +122,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 250px;
+    width: 80%;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -175,7 +220,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
+  
 .close {
     position: absolute;
     right: 15px;
@@ -209,19 +254,15 @@ body {
 
 
 </style>
-
 <script>
-    // Function to open the modal
     function openModal() {
         document.getElementById("reservationModal").style.display = "flex";
     }
 
-    // Function to close the modal
     function closeModal() {
         document.getElementById("reservationModal").style.display = "none";
     }
 
-    // Close the modal when clicking outside of it
     window.onclick = function(event) {
         if (event.target == document.getElementById("reservationModal")) {
             closeModal();

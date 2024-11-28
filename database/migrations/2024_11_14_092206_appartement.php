@@ -11,21 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('appartement', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email');
-            $table->string('adresse');
-            $table->string('ville');
-            $table->string('codePostal');
-            $table->string('telephone');
+        if (!Schema::hasTable('appartement')) {
+            Schema::create('appartement', function (Blueprint $table) {
+                $table->id();
+                $table->string('nom');
+                $table->string('prenom');
+                $table->string('email');
+                $table->string('adresse')->nullable();
+                $table->string('ville');
+                $table->string('codePostal');
+                $table->string('telephone');
 
+                $table->unsignedBigInteger('room_id');
+                $table->foreign('room_id')->references('id')->on('create_appartements')->onDelete('cascade');
 
-         
-            $table->timestamps();
-        });
+                $table->timestamps();
+            });
+        }
+
     }
 
     /**
@@ -33,7 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
         Schema::dropIfExists('appartement');
     }
 };

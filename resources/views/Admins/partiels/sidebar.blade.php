@@ -71,6 +71,30 @@
 .sidebar .nav .nav-item .nav-link {
     color: #d0d7ff;
 }
+/* تصميم القائمة الفرعية */
+.submenu {
+    display: none; /* مخفية افتراضيًا */
+    list-style-type: none; /* إزالة النقاط */
+    padding-left: 20px; /* إزاحة للداخل */
+}
+
+.submenu li a {
+    color: #818181;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.submenu li a:hover {
+    color: #ec1d25;
+    background-color: #121729;
+    border-top-right-radius:20%;
+    border-bottom-right-radius:20%;
+
+}
+
 </style>
 
 <script>
@@ -85,14 +109,22 @@
     document.getElementById("sidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     }
+    function toggleSubmenu(submenuId) {
+    var submenu = document.getElementById(submenuId);
+    if (submenu.style.display === "block") {
+        submenu.style.display = "none";
+    } else {
+        submenu.style.display = "block";
+    }
+}
+
 </script>
 
 
 
 <base href="/public">
-
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    
+
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: #d0d7ff">&times;</a>
 
     <div style="    display: flex;
@@ -100,9 +132,9 @@
     align-items: center;">
     <img src="clientpage/images/MERCI_IMG/Logo-Merci.png" alt="" width="200px">
     </div>
-    
+
     <ul class="nav">
-       
+
         <li class="nav-item menu-items">
             <a class="nav-link" href="repas">
                 <span class="menu-icon">
@@ -111,6 +143,21 @@
                 <span class="menu-title">Menu</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="javascript:void(0)" onclick="toggleSubmenu('submenu1')">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Menu list</span>
+            </a>
+            <!-- القائمة الفرعية -->
+            <ul id="submenu1" class="submenu">
+                <li><a href="admin/menu/brunches">Brunches</a></li>
+                <li><a href="admin/menu/supplements">Supplements</a></li>
+                 <li><a href="admin/menu/petiti">Petits Déjeuners</a></li>
+            </ul>
+        </li>
+
         <li class="nav-item menu-items">
             <a class="nav-link" href="contact">
                 <span class="menu-icon">
@@ -143,7 +190,7 @@
                 <span class="menu-title">commandes</span>
             </a>
         </li>
-     
+
         <li class="nav-item menu-items">
             <a class="nav-link" href="reservation">
                 <span class="menu-icon">
@@ -152,7 +199,7 @@
                 <span class="menu-title">Reservation</span>
             </a>
         </li>
-       
+
         <li class="nav-item menu-items">
             <a class="nav-link" href="photos">
                 <span class="menu-icon">
@@ -177,19 +224,19 @@
                 <span class="menu-title">Coupons</span>
             </a>
         </li>
-        
+
         <li class="nav-item menu-items" style="margin-top: 50px;">
             <span class="barre"></span>
             <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                        
-                    
+
+
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-            
+
                 <span class="menu-icon">
                     <i class="fas fa-power-off" style="color: #fc424a;"></i>
                 </span>
@@ -198,5 +245,4 @@
         </li>
     </ul>
 </nav>
-
 

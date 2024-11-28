@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    { if (!Schema::hasTable('appartements')) { // التأكد من عدم وجود الجدول مسبقاً
         Schema::create('appartements', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
@@ -20,8 +20,9 @@ return new class extends Migration
             $table->integer('etoiles')->default(3);
             $table->string('extra_info')->nullable();
             $table->timestamps();
+
         });
-    }
+    }}
 
     /**
      * Reverse the migrations.

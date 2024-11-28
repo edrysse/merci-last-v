@@ -10,6 +10,14 @@ class CreateAppartement extends Model
     use HasFactory;
     protected $table = 'appartements';
 
-    protected $fillable = ['nom', 'description', 'image', 'prix', 'etoiles', 'extra_info'];
+    protected $fillable = [
+        'nom',
+        'prenom',
+        'description',
+        'image',
+        'prix',
+        'etoiles',
+        'extra_info',
+    ];
 
 }

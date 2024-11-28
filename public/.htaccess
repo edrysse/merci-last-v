@@ -5,17 +5,23 @@
 
     RewriteEngine On
 
-    # Handle Authorization Header
+    # Handle Authorization Header for API requests (important for token-based auth)
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect trailing slashes if not a folder
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Send all requests to the front controller (index.php)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Ensure Laravel's public directory is always accessed via index.php
+    # This prevents direct access to .env and other sensitive files.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*/)?$ index.php [QSA,L]
 </IfModule>

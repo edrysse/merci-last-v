@@ -32,6 +32,8 @@ use App\Http\Controllers\AppartementController;
 use App\Http\Controllers\CreateAppartementController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+
 
 
 Route::get('/clientBlog/search', [App\Http\Controllers\clientBlog::class, 'search'])->name('search');
@@ -92,7 +94,7 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-// tests : 
+// tests :
 
 // Route::get('/test', function() {return view('client.validation');});
 // Route::get('/test', [ComndController::class, 'index']);
@@ -138,11 +140,16 @@ Route::get('/Menu/Dessert', [clientMenu::class, 'index_dessert'])->name('Dessert
 Route::get('/Menu/Sandwich', [clientMenu::class, 'index_sandwich'])->name('sandwich');
 Route::get('/Menu/Gdrinks', [clientMenu::class, 'index_Gdrinks'])->name('Gdrinks');
 Route::get('/Menu/A-La-Carte', [clientMenu::class, 'index_Alacarte'])->name('Alacarte');
-
-Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
-Route::post('/Apparetementstore',[AppartementController::class,'store'])->name('Apparetementstore');
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 
+
+
+
+Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
+Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
+Route::resource('appartements', CreateAppartementController::class);
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 Route::get('/appartements', [CreateAppartementController::class, 'index'])->name('appartements.index');
 Route::get('/appartements/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
@@ -150,3 +157,38 @@ Route::post('/appartements', [CreateAppartementController::class, 'store'])->nam
 Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
 Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
+
+// routes/web.php
+Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
+
+
+Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
+Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
+
+Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
+
+
+Route::prefix('admin/menu')->group(function () {
+    // مسارات إنشاء وتخزين PetitsDejeuners
+    Route::get('create-petits-dejeuner', [MenuController::class, 'createPetitsDejeuner'])->name('admin.menu.create-petits-dejeuner');
+    Route::post('store-petits-dejeuner', [MenuController::class, 'storePetitsDejeuner'])->name('admin.menu.store-petits-dejeuner');
+
+    // إضافة مسار لعرض جميع الـ PetitsDejeuners
+    Route::get('petits-dejeuners', [MenuController::class, 'indexPetitsDejeuners'])->name('admin.menu.petits-dejeuners.index');
+
+    // مسارات إنشاء وتخزين Brunch
+    Route::get('create-brunch', [MenuController::class, 'createBrunch'])->name('admin.menu.create-brunch');
+    Route::post('store-brunch', [MenuController::class, 'storeBrunch'])->name('admin.menu.store-brunch');
+
+    // مسارات إنشاء وتخزين Supplement
+    Route::get('create-supplement', [MenuController::class, 'createSupplement'])->name('admin.menu.create-supplement');
+    Route::post('store-supplement', [MenuController::class, 'storeSupplement'])->name('admin.menu.store-supplement');
+
+    // إضافة مسار لعرض قائمة supplements
+    Route::get('supplements', [MenuController::class, 'indexSupplements'])->name('admin.menu.supplements.index');
+     // إضافة مسار لعرض قائمة supplements
+     Route::get('brunches', [MenuController::class, 'indexbrunches'])->name('admin.menu.brunches.index');
+    });
+
+
+
