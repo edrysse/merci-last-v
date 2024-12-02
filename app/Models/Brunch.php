@@ -10,7 +10,7 @@ class Brunch extends Model
     use HasFactory;
 
     // تحديد اسم الجدول في قاعدة البيانات
-    protected $table = 'Brunches'; // إذا كان اسم الجدول غير الافتراضي (يعني ليس الـ plural من اسم الموديل)
+    protected $table = 'brunches'; // إذا كان اسم الجدول غير الافتراضي (يعني ليس الـ plural من اسم الموديل)
 
     // تحديد الأعمدة القابلة للتعبئة
     protected $fillable = [
