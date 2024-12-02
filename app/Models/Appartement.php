@@ -9,5 +9,6 @@ class Appartement extends Model
 {
     use HasFactory;
     protected $fillable = ["nom","prenom","email","adresse","ville","codePostal","telephone"];
+
     
 }
