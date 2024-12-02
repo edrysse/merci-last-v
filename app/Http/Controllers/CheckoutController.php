@@ -64,9 +64,9 @@ class CheckoutController extends Controller
             'notes' => $request->notes
             ]);
         }
-        else 
+        else
         {
-            
+
                 Comnd::where('oid',$request->oid)->delete();
 
                 Comnd::create([
@@ -84,7 +84,7 @@ class CheckoutController extends Controller
                     ]);
             };
 
-        
+
         if ($request->Pmethod == 'CMI')
         {
             $cmiClient = new Cmi();
@@ -108,7 +108,7 @@ class CheckoutController extends Controller
         elseif ($request->Pmethod == 'PayPal')
         {
             $data = [];
-            
+
             $data['items'] = [
                 [
                     'name' => 'Product',
@@ -117,21 +117,21 @@ class CheckoutController extends Controller
                     'qty' => 1
                 ]
             ];
-    
+
             $data['invoice_id'] = 1;
-    
+
             $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
-    
+
             $data['return_url'] = route('payment.success');
-    
+
             $data['cancel_url'] = route('payment.cancel');
-    
+
             $data['total'] = $request->prix;
-    
+
             $provider = new ExpressCheckout;
             $response = $provider->setExpressCheckout($data);
             $response = $provider->setExpressCheckout($data, true);
-    
+
             return redirect($response['paypal_link']);
         }
             $cartItems = Cart::destroy();

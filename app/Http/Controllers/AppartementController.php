@@ -3,47 +3,94 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Appartement; // Ensure the correct model is imported
+use App\Models\CreateAppartement;
 
 class AppartementController extends Controller
 {
-    // Display all appartements
     public function index()
     {
-        // Use the correct model to fetch all records
-        $rooms = Appartement::all(); // Updated to use the Appartement model
-
+        $rooms = CreateAppartement::all();
         return view('appartement.index', compact('rooms'));
     }
 
-    // Store a new appartement reservation
     public function store(Request $request)
     {
-        // Validate incoming request data
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email',
-            'adresse' => 'nullable|string|max:255',
-            'ville' => 'required|string|max:255',
-            'codePostal' => 'required|string|max:10',
-            'telephone' => 'required|string|max:15',
+            'description' => 'required|string',
+            'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'prix' => 'required|numeric',
+            'etoiles' => 'required|integer|min:1|max:5',
+            'extra_info' => 'nullable|string',
         ]);
 
-        // Create a new appartement record with validated data
-        Appartement::create($validatedData);
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
 
-        // Redirect back with success message
+        CreateAppartement::create($validatedData);
+
         return redirect()->back()->with('success', 'Réservation effectuée avec succès!');
     }
 
-    // Display the validation page (e.g., to show cart or other data)
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nom' => 'required|string|max:255',
+            'description' => 'required|string',
+            'prix' => 'required|numeric',
+            'etoiles' => 'required|integer|min:1|max:5',
+            'extra_info' => 'nullable|string',
+        ]);
+
+        $room = CreateAppartement::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $room->update($validatedData);
+
+        return redirect()->route('appartement.index')->with('success', 'Appartement mis à jour avec succès!');
+    }
+
     public function validation()
     {
-        // Get cart items from session or elsewhere
         $cartItems = session('cartItems', []);
-
-        // Pass cart items to the validation view
         return view('appartement.appartementValid', compact('cartItems'));
+    }
+
+    public function adminRooms()
+    {
+        $rooms = CreateAppartement::all();
+        return view('admin.rooms.index', compact('rooms'));
+    }
+
+    public function appartementAdmin()
+    {
+        $rooms = CreateAppartement::all();
+        return view('appartement.admin', compact('rooms'));
+    }
+
+    public function edit($id)
+    {
+        $room = CreateAppartement::findOrFail($id);
+        return view('appartement.edit', compact('room'));
+    }
+
+    public function Validation2($id)
+{
+    $room = CreateAppartement::findOrFail($id);
+    $price = $room->prix;
+
+    return view('appartement.appartementValid', ['price' => $price]);
+}
+
+
+    public function showRooms()
+    {
+        $rooms = CreateAppartement::all();
+        return view('appartement.appartementValid', compact('rooms'));
     }
 }

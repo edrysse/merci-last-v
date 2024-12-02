@@ -32,38 +32,10 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
     </div>
 @endif
-        <div class="card checkout-order-summary">
-            <div class="card-body">
-                <div class="p-3 bg-light mb-3">
-                    <h5 class="promotext" style="text-align: center;" class=" mb-0">Avez-vous un code promo? <a id="promo" onclick="event.preventDefault(); return false;" style="color: #cf2227; " href=""><span class="promocode" >Cliquez ici pour saisir votre code</span></a></h5>
-                </div>
-                <form action="{{ route('coupon.add') }}">
-                    <div class="py-3 bg-light mb-3 cardcoupon" id="coupon" style="display: none">
-                        <input type="text" class="form-control" name="code" placeholder="Saisir le code promo">
-                            <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4" style="    margin: 20px auto 0;">
-                                Valider
-                            </button>
-                    </div>
-                    <span class="right"></span>
-                    <span class="left"></span>
-                </form>
-            </div>
-        </div>
+
+
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-    document.getElementById("promo").addEventListener("click", afficheCodePromo);
-        function afficheCodePromo() {
-    var x = document.getElementById("coupon");
-    if (x.style.display === "none") {
-        x.style.display = "block";
 
-    } else {
-        x.style.display = "none";
-
-    }
-}
-    </script>
  <div class="row">
     <div class="col-xl-8 mod-8">
         {{Session::get('discount')}}
@@ -213,78 +185,35 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (count($cartItems) > 0)
 
 
-                                @php
-                                $total = 0;
-                                @endphp
-
-
-                                @foreach ($cartItems as $cartItem)
-                                        @php
-                                            $total += $cartItem->price * $cartItem->qty;
-                                        @endphp
-                                        <tr>
-                                        <th scope="row"><img src="{{$cartItem->model->image}}" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate" style="white-space: wrap;">{{$cartItem->name}}</h5>
-                                            <p class="text-muted mb-0 mt-1">{{$cartItem->price}} DH x {{$cartItem->qty}}</p>
-                                        </td>
-                                        <td style="white-space: nowrap; text-align: center;">{{ $cartItem->price * $cartItem->qty }} DH</td>
-                                    </tr>
-                                    @endforeach
+                                <p>ثمن الشقة: {{ $price }}</p>
 
 
 
 
-                                <tr class="bg-light">
-                                    <td colspan="2">
-                                        <h5 class="font-size-14 m-0">Subtotal:</h5>
-                                    </td>
-                                    <td style="white-space: nowrap;">
-                                        {{$total}} DH
-                                    </td>
-                                </tr>
-                                <tr class="bg-light" id="trLivraison" style="display: none">
-                                    <td colspan="2">
-                                        <h5 class="font-size-14 m-0">Livraison:</h5>
-                                    </td>
-                                    <td style="white-space: nowrap;">
-                                        +15 DH
-                                    </td>
-                                </tr>
-                                <tr class="bg-light" id="trdiscount" style="display: none">
-                                    <td colspan="2">
-                                        <h5 class="font-size-14 m-0">Réduction:</h5>
-                                    </td>
-                                    <td>
-                                        -{{Session::get('discount')}}%
-                                    </td>
-                                </tr>
-                                <tr class="bg-light">
-                                    <td colspan="2">
-                                        <h5 class="font-size-14 m-0">Total:</h5>
-                                    </td>
-                                    <td id="livrason1" style="display: none; white-space: nowrap;">
-                                        {{($total + 15) - ($total + 15)*Session::get('discount')/100}} DH
-                                    </td>
-                                    <td id="livrason0" style="white-space: nowrap;">
-                                        {{$total - $total*Session::get('discount')/100}} DH
-                                    </td>
-                                </tr>
-                                <input type="hidden" value="{{$total}}" name="prix" id="total">
 
-                                @else
+
+
+
+
+                                @if(isset($price))
+                                <input type="hidden" value="{{ $price }}" name="price" id="total">
                                 <tr class="bg-light">
                                     <td colspan="2">
                                         <h5 class="font-size-14 m-0">Total:</h5>
                                     </td>
                                     <td style="white-space: nowrap;">
-                                        0 DH
+                                        {{ $price }} DH
                                     </td>
                                 </tr>
-                                @endif
+                            @else
+                                <tr>
+                                    <td colspan="3">لم يتم العثور على الثمن.</td>
+                                </tr>
+                            @endif
+
+
                             </tbody>
                         </table>
 

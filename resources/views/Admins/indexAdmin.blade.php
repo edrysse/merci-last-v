@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
     <!-- End layout styles -->
 
     <!-- Scripts -->
@@ -38,26 +38,26 @@
     width: 100%;
     table-layout: fixed;
     /* box-shadow: 1px 1px 20px 0px #999; */
-    
+
   }
-  
+
   table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
   }
-  
+
   table tr{
     background-color: #222222;
     /* background-color: transparent; */
     border: 1px solid #ddd;
     padding: .35em;
-    
+
   }
   tbody tr{
     /* height: 130px; */
-    
+
   }
-  
+
   table th ,
   table td{
     padding: .625em;
@@ -65,13 +65,13 @@
     color: #d0d7ff;
     /* white-space: wrap !important; */
   }
-  
+
   table th{
     font-size: .85em;
     letter-spacing: .1em;
     text-transform: uppercase;
   }
-  
+
   .table thead th {
     color: #d0d7ff;
 
@@ -88,13 +88,13 @@
   @media screen and (max-width: 992px) {
     table{
       border: 0;
-      
+
     }
-  
+
     table caption {
       font-size: 1.3em;
     }
-    
+
     table thead{
       border: none;
       clip: rect(0 0 0 0);
@@ -105,21 +105,21 @@
       position: absolute;
       width: 1px;
     }
-    
+
     table tr{
       border-bottom: 3px solid #ddd;
       display: block;
       margin-bottom: .625em;
     }
-    
+
     table td{
       border-bottom: 1px solid #ddd;
       display: block;
       font-size: .8em;
       text-align: right;
-      
+
     }
-    
+
     table td::before {
       /*
       * aria-label has no advantage, it won't be read inside a table
@@ -130,7 +130,7 @@
       font-weight: bold;
       text-transform: uppercase;
     }
-    
+
     table td:last-child {
       border-bottom: 0;
     }
@@ -142,17 +142,17 @@
         margin-right: 20px;
     }
   }
-  
-  
-  
-  
+
+
+
+
 table .btn{
     padding: 0.5rem;
 
 }
-  
-  
-  
+
+
+
 @media (max-width: 1083px) {
     div.increment .number-input {
         margin-bottom: 5px;
@@ -163,7 +163,7 @@ table .btn{
         margin-right: 5px;
     }
 }
-  
+
 body {
   background-color: #20283E;
   background-image: radial-gradient(#000000 0.5px, #20283E 0.5px);
@@ -176,7 +176,7 @@ body {
             /* background-color: white; */
             border-radius: 10px;
             /* border: 2px solid #d9d9d9; */
-            
+
         }
         .form-control:focus {
         /* background-color: rgb(255, 255, 255); */
@@ -189,7 +189,7 @@ body {
     option:checked, option:hover {
         background-color: #d9d9d9;
         }
-        
+
     .select-dropdown,
     .select-dropdown * {
         margin: 0;

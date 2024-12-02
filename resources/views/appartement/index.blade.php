@@ -29,56 +29,38 @@
 
     </div>
 </section>
-<div class="container">
-    <div class="title-section-ourmenu t-center m-b-22">
-        <span class="tit2 t-center">
-            Découvrir
-        </span>
-
-        <h3 class="tit5 t-center m-t-2">
-            notre chambres        </h3>
-    </div>
-    <div class="card-container">
-        @foreach($rooms as $room)
-        <form action="{{ route('appartement.appartementValid') }}">
-            <div class="card">
-                <img src="{{ asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
-                <div class="card-info">
-                    <h3>{{ $room->nom }}</h3>
-                    <p>{{ $room->description }}</p>
-                    <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
-                    <div class="stars">{{ str_repeat('★', $room->etoiles) }}{{ str_repeat('☆', 5 - $room->etoiles) }}</div>
-                    <p class="extra-info">{{ $room->extra_info }}</p>
-                    <button class="btn">Réserver</button>
-                </div>
-            </div>
-        </form>
-        @endforeach
 
 
+    <div class="container">
+        <div class="title-section-ourmenu t-center m-b-22">
+            <span class="tit2 t-center">Découvrir</span>
+            <h3 class="tit5 t-center m-t-2">Notre Chambres</h3>
+        </div>
 
-    </div>
-
-    <div id="reservationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Réservez votre chambre</h2>
-            <form action="{{ route('reservations.store') }}" method="POST">
+        <div class="card-container">
+            @foreach($rooms as $room)
+            <form action="{{ route('appartement.appartementValid', ['id' => $room->id]) }}" method="GET">
                 @csrf
-                <input type="text" name="nom" placeholder="Nom" required>
-                <input type="text" name="prenom" placeholder="Prénom" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="adresse" placeholder="Adresse">
-                <input type="text" name="ville" placeholder="Ville" required>
-                <input type="text" name="codePostal" placeholder="Code Postal" required>
-                <input type="text" name="telephone" placeholder="Téléphone" required>
-                <input type="hidden" id="room_id" name="room_id" value="">
-
-                <button type="submit">Confirmer la réservation</button>
+                <div class="card">
+                    <img src="{{ asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
+                    <div class="card-info">
+                        <h3>{{ $room->nom }}</h3>
+                        <p>{{ $room->description }}</p>
+                        <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
+                        <div class="stars">
+                            {{ str_repeat('★', $room->etoiles) }}
+                            {{ str_repeat('☆', 5 - $room->etoiles) }}
+                        </div>
+                        <p class="extra-info">{{ $room->extra_info }}</p>
+                        <input type="hidden" name="price" value="{{ $room->prix }}">
+                        <button class="btn" type="submit">Réserver</button>
+                    </div>
+                </div>
             </form>
+            @endforeach
         </div>
     </div>
-</div>
+
 
 
 
@@ -220,7 +202,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-  
+
 .close {
     position: absolute;
     right: 15px;
