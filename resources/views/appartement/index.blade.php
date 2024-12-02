@@ -31,35 +31,35 @@
 </section>
 
 
-    <div class="container">
-        <div class="title-section-ourmenu t-center m-b-22">
-            <span class="tit2 t-center">Découvrir</span>
-            <h3 class="tit5 t-center m-t-2">Notre Chambres</h3>
-        </div>
-
-        <div class="card-container">
-            @foreach($rooms as $room)
-            <form action="{{ route('appartement.appartementValid', ['id' => $room->id]) }}" method="GET">
-                @csrf
-                <div class="card">
-                    <img src="{{ asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
-                    <div class="card-info">
-                        <h3>{{ $room->nom }}</h3>
-                        <p>{{ $room->description }}</p>
-                        <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
-                        <div class="stars">
-                            {{ str_repeat('★', $room->etoiles) }}
-                            {{ str_repeat('☆', 5 - $room->etoiles) }}
-                        </div>
-                        <p class="extra-info">{{ $room->extra_info }}</p>
-                        <input type="hidden" name="price" value="{{ $room->prix }}">
-                        <button class="btn" type="submit">Réserver</button>
-                    </div>
-                </div>
-            </form>
-            @endforeach
-        </div>
+<div class="container">
+    <div class="title-section-ourmenu t-center m-b-22">
+        <span class="tit2 t-center">Découvrir</span>
+        <h3 class="tit5 t-center m-t-2">Notre Chambres</h3>
     </div>
+
+    <div class="card-container">
+        @foreach($rooms as $room)
+        <form action="{{ route('appartement.appartementValid', ['id' => $room->id]) }}" method="GET">
+            @csrf
+            <div class="card">
+                <img src="{{ asset('storage/'.$room->image) }}" alt="{{ $room->nom }}">
+                <div class="card-info">
+                    <h3>{{ $room->nom }}</h3>
+                    <p>{{ $room->description }}</p>
+                    <p class="price">Prix: {{ $room->prix }}€ / nuit</p>
+                    <div class="stars">
+                        {{ str_repeat('★', $room->etoiles) }}
+                        {{ str_repeat('☆', 5 - $room->etoiles) }}
+                    </div>
+                    <p class="extra-info">{{ $room->extra_info }}</p>
+                    <input type="hidden" name="price" value="{{ $room->prix }}">
+                    <button class="btn" type="submit">Réserver</button>
+                </div>
+            </div>
+        </form>
+        @endforeach
+    </div>
+</div>
 
 
 
@@ -80,10 +80,10 @@ body {
 .container {
     width: 100%;
     max-width: 1200px;
-    justify-items: center;
+    margin: 0 auto; /* لتوسيط الحاوية */
     text-align: center;
-    margin-right: 2%;
 }
+
 
 .title {
     font-size: 2em;
@@ -93,10 +93,12 @@ body {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* استجابة ديناميكية */
+    gap: 15px;
+    justify-content: center; /* لتوسيط الكاردات */
 }
+
+
 
 .card {
     background-color: #fff;
@@ -107,6 +109,12 @@ body {
     width: 80%;
     transition: transform 0.3s, box-shadow 0.3s;
 }
+.card {
+    width: 100%; /* تأكد أن الكارد يملأ العمود */
+    max-width: 350px; /* حدد عرضاً أقصى مناسباً */
+    margin: 0 auto; /* توازن الهوامش لتوسيطها */
+}
+
 
 .card:hover {
     transform: translateY(-5px);
@@ -167,18 +175,21 @@ body {
 .btn:hover {
     background-color: #e74c3c; /* Rouge plus clair au survol */
 }
-
 @media (max-width: 768px) {
     .card-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr; /* كارد واحد لكل صف */
+        width: 100%; /* لضمان التمركز */
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
     .card-container {
         grid-template-columns: 1fr;
+        gap: 10px; /* قلل الفجوة للشاشات الصغيرة */
     }
 }
+
 
 .modal {
     display: none;

@@ -1,17 +1,21 @@
 <aside class="sidebar trans-0-4">
-    
+
     <!-- Button Hide sidebar -->
     <button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
 
     <!-- - -->
     <ul class="menu-sidebar p-t-95 p-b-70">
-        
+
         <li class="t-center m-b-13">
             <a href={{ route('clientIndex.index') }} class="txt19">Accueil</a>
         </li>
 
-        <li class="t-center m-b-13">
-            <a href={{ route('clientMenu.index') }} class="txt19">Menu</a>
+        <li class="t-center dropdown">
+            <a href="{{ route('clientMenu.index') }}"class="txt19"> Menu</a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('client.menu.voirmenu') }}" class="dropdown-item">Voire Menu</a></li>
+                <li><a href="{{ route('clientMenu.index') }}" class="dropdown-item">Commander</a></li>
+            </ul>
         </li>
 
         <li class="t-center m-b-13">
@@ -28,15 +32,16 @@
             <a href={{ route('clientContact.index') }} class="txt19">Contact</a>
         </li>
 
-        <li class="t-center dropdown">
-    <a href="#" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto dropdown-toggle">
-        Réservations
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="{{ route('clientReservation.index') }}" class="dropdown-item">Restaurant</a></li>
-        <li><a href="{{ route('Apparetementindex') }}" class="dropdown-item">Appartement</a></li>
-    </ul>
-</li>
+        <li class="t-center dropdown" class="txt19">
+            <a href="#"class="txt19" >
+                Réservations
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('clientReservation.index') }}" class="dropdown-item">Restaurant</a></li>
+                <li><a href="{{ route('Apparetementindex') }}" class="dropdown-item">Appartement</a></li>
+            </ul>
+        </li>
+
 <style>
 .dropdown {
     position: relative;
@@ -74,6 +79,28 @@
 /* Affiche le sous-menu au survol de l'élément parent */
 .dropdown:hover .dropdown-menu {
     display: block;
+}
+.menu-sidebar li {
+    margin-bottom: 15px; /* تغيير قيمة التباعد حسب الحاجة */
+    list-style-type: none; /* إزالة النقاط إذا كانت موجودة */
+}
+
+.menu-sidebar li:last-child {
+    margin-bottom: 0; /* إزالة التباعد السفلي للعنصر الأخير */
+}
+
+.menu-sidebar li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #333; /* تغيير اللون حسب التصميم */
+    padding: 10px 0; /* مسافة داخلية أعلى وأسفل النص */
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.menu-sidebar li a:hover {
+    color: #fff; /* تغيير اللون عند التمرير */
+    background-color: #665757; /* لون الخلفية عند التمرير */
 }
 
 </style>
