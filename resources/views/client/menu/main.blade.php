@@ -2,11 +2,11 @@
 
 
 @section('meta')
-<title>Merci Laayoune - Menu</title>
-<meta name="description" content="Merci Laayoune est un élégant café salon de thé avec une charmante terrasse 
+<title>Merci Laayoune - Commander</title>
+<meta name="description" content="Merci Laayoune est un élégant café salon de thé avec une charmante terrasse
     située au cœur de la ville de Laayoune. Notre ambiance chaleureuse et notre menu raffiné vous invitent à vous
-    détendre et à savourer des moments de convivialité. Profitez de notre vaste sélection de boissons chaudes et froides, 
-    de délicieuses pâtisseries fraîchement préparées et de plats légers. Que ce soit pour une pause délicieuse ou une 
+    détendre et à savourer des moments de convivialité. Profitez de notre vaste sélection de boissons chaudes et froides,
+    de délicieuses pâtisseries fraîchement préparées et de plats légers. Que ce soit pour une pause délicieuse ou une
     rencontre entre amis, Merci Laayoune vous accueille avec un service attentionné et un cadre accueillant.">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:type" content="website">
@@ -26,15 +26,15 @@
             flex-direction: column;
             align-items: center;">
                 <h2 class="tit6 t-center">
-                    Menu
-                    
+                    Commander
+
                 </h2>
-        
+
                 <div class="mb-4" >
                     {{-- Merci Laayoune --}}
                     <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" >
                 </div>
-                
+
                 <div style="    display: flex;
                 align-items: center;">
                     <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
@@ -43,9 +43,9 @@
                     <a href=""><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/snapchat.png" alt="" width="22px"></a>
                     <a href="https://shorturl.at/cnrt1"><img class="ml-2" src="clientpage/images/MERCI_IMG/social-media-merci/pin-merci.png" alt="" width="22px"></a>
                 </div>
-            
+
         </div>
-        
+
     </section>
 
 
@@ -98,20 +98,20 @@
 
     <!-- Main menu -->
 
-   
-    
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 
 <div style="position: relative;" class="navbarMenu">
 
-    
-   
 
 
-    
+
+
+
 
     <section class="section-mainmenu p-b-70 bg1-pattern">
         <nav style=" width: 50%; margin:auto; padding-top: 30px; padding-bottom: 30px;" class="navMenu">
@@ -119,19 +119,19 @@
                 <li>
                     <a href={{ route('starters') }}>starters</a>
                 </li>
-    
+
                 <li>
                     <a href={{ route('drinks') }}>drinks</a>
                 </li>
-    
+
                 <li>
                     <a href={{ route('main') }} style="color: #ec1d25; font-weight:900">main</a>
                 </li>
-    
+
                 <li>
                     <a href={{ route('desserts') }}>desserts</a>
                 </li>
-    
+
         </nav>
         <div class="dropdown" style="width: 50%; margin: auto; padding-top: 50px; padding-bottom: 50px;">
             <button style="left: 50%; transform: translate(-50%, -50%); position: absolute;" class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -145,51 +145,51 @@
             </ul>
     </div>
         <div class="container">
-            
-            
+
+
 
 
             <h3 class="tit-mainmenu tit10 p-b-25" style="color:brown">
                 MAIN
             </h3>
-            <main> 
-                
-                <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;"> 
-                    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"> 
-                        
+            <main>
+
+                <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+                    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+
                         @foreach ($main as $item)
-                            <div class="col"> 
-                                <div class="card h-100 shadow-sm"> 
-                                    <img src="{{$item->image}}" class="card-img-top" alt="..."> 
-                                    <div class="card-body"> 
-                                        <div class="clearfix mb-3"> 
-                                            <span class="float-start badge rounded-pill bg-danger" style="width: 80px; height: 28px; font-size: 0.9em;">{{$item->nom}}</span> 
-                                            <span class="float-end price-hp" style="font-size: 1.25em;">{{$item->prix}} DH</span> 
-                                        </div> 
+                            <div class="col">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="{{$item->image}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <div class="clearfix mb-3">
+                                            <span class="float-start badge rounded-pill bg-danger" style="width: 80px; height: 28px; font-size: 0.9em;">{{$item->nom}}</span>
+                                            <span class="float-end price-hp" style="font-size: 1.25em;">{{$item->prix}} DH</span>
+                                        </div>
                                         <p class="card-title">
                                             {{ $item->description }}
-                                        </p> 
-                                        <div class="text-center my-4"> 
+                                        </p>
+                                        <div class="text-center my-4">
                                             <a href="{{ route('cart.show', $item->id) }}" class="btn3 flex-c-m size13 txt11 trans-0-4" style="left: 50%;transform: translate(-50%, -50%); position: absolute;"
-                                        >commander</a> 
+                                        >commander</a>
                                         </div>
-                                    </div> 
-                                </div> 
-                            </div>  
-                        @endforeach       
-                    </div> 
-                </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </main>
-            
-            
+
+
 
 
 
         </div>
     </section>
 </div>
-    
 
 
-@include('client.menu.repas')  
+
+@include('client.menu.repas')
     @endsection
