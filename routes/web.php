@@ -161,6 +161,8 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 // مسارات إدارة التطبيق بشكل عام
 Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
 Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
+Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
+
 
 // مسارات عرض قائمة الطعام
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');

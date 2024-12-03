@@ -40,10 +40,11 @@ appartements     </h2>
     @if($rooms->isEmpty())
         <p>Aucun appartement enregistré.</p>
     @else
+    <button class="btn btn-primary btn-sm" ><a href="/appartements/create"class="btn btn-primary">Ajouter un appartement</a></button>
         <table class="table">
+
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Prix</th>
@@ -54,7 +55,6 @@ appartements     </h2>
             <tbody>
                 @foreach($rooms as $room)
                     <tr>
-                        <td>{{ $room->id }}</td>
                         <td>{{ $room->nom }}</td>
                         <td>{{ $room->description }}</td>
                         <td>{{ $room->prix }} dirhams</td>

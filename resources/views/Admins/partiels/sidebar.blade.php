@@ -199,6 +199,15 @@
                 <span class="menu-title">Reservation</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="appartement/admin">
+                <span class="menu-icon">
+                    <i class="mdi mdi-file-document-box"></i>
+                </span>
+                <span class="menu-title">Appartement</span>
+            </a>
+        </li>
+
 
         <li class="nav-item menu-items">
             <a class="nav-link" href="photos">

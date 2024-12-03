@@ -1,12 +1,16 @@
-@extends('layout')
+@extends('Admins.indexAdmin')
 
 @section('content')
-    <h1>Créer un Nouvel Appartement</h1>
+<div class="container">
+    <br><br><br><br>
 
-    <form action="{{ route('appartements.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+    <section class="mb-5"
+    style="background-image: url(clientpage/images/bg-title-page-01.jpg); padding: 5em 0em;">
+        <h2 class="tit6 t-center" style="font-size: 3rem; text-align: center; text-shadow: 0px 0 20px black;">
+            Créer un Nouvel Appartement
+        </h2>
+    </section>
 
-    <!-- Afficher les erreurs -->
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -17,148 +21,41 @@
         </div>
     @endif
 
-    <!-- Champ Nom -->
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" name="nom" value="{{ old('nom') }}" required>
-    @error('nom')
-        <span class="error">{{ $message }}</span>
-    @enderror
+    <form action="{{ route('appartements.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-    <!-- Champ Description -->
-    <label for="description">Description :</label>
-    <textarea id="description" name="description" value="{{ old('description') }}" required></textarea>
-    @error('description')
-        <span class="error">{{ $message }}</span>
-    @enderror
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" required>
+        </div>
 
-    <!-- Champ Image -->
-    <label for="image">Image (optionnelle) :</label>
-    <input type="file" id="image" name="image" accept="image/*">
-    @error('image')
-        <span class="error">{{ $message }}</span>
-    @enderror
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
+        </div>
 
-    <!-- Champ Prix -->
-    <label for="prix">Prix :</label>
-    <input type="number" id="prix" name="prix" step="0.01" value="{{ old('prix') }}" required>
-    @error('prix')
-        <span class="error">{{ $message }}</span>
-    @enderror
+        <div class="mb-3">
+            <label for="prix" class="form-label">Prix</label>
+            <input type="number" class="form-control" id="prix" name="prix" step="0.01" value="{{ old('prix') }}" required>
+        </div>
 
-    <!-- Champ Étoiles -->
-    <label for="etoiles">Étoiles (sur 5) :</label>
-    <input type="number" id="etoiles" name="etoiles" min="1" max="5" value="{{ old('etoiles', 3) }}">
-    @error('etoiles')
-        <span class="error">{{ $message }}</span>
-    @enderror
+        <div class="mb-3">
+            <label for="etoiles" class="form-label">Étoiles</label>
+            <input type="number" class="form-control" id="etoiles" name="etoiles" value="{{ old('etoiles', 3) }}" min="1" max="5" required>
+        </div>
 
-    <!-- Champ Informations Supplémentaires -->
-    <label for="extra_info">Informations Supplémentaires :</label>
-    <input type="text" id="extra_info" name="extra_info" value="{{ old('extra_info') }}">
-    @error('extra_info')
-        <span class="error">{{ $message }}</span>
-    @enderror
+        <div class="mb-3">
+            <label for="image" class="form-label">Image (optionnelle)</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+        </div>
 
-    <!-- Bouton de Soumission -->
-    <button type="submit" class="btn">Créer</button>
-</form>
+        <div class="mb-3">
+            <label for="extra_info" class="form-label">Informations Supplémentaires</label>
+            <textarea class="form-control" id="extra_info" name="extra_info" rows="3">{{ old('extra_info') }}</textarea>
+        </div>
 
-<style>
-        /* Styles généraux */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Fond clair */
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 30px;
-    color: #ff3b30; /* Couleur rouge */
-    font-size: 2em;
-}
-
-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff; /* Fond blanc */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    font-size: 1em;
-    margin-bottom: 8px;
-    display: block;
-    color: #333; /* Couleur noire pour les labels */
-}
-
-input[type="text"],
-textarea,
-input[type="number"],
-input[type="file"],
-button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc; /* Bordure gris clair */
-    box-sizing: border-box;
-}
-
-textarea {
-    resize: vertical;
-    height: 150px;
-}
-
-button {
-    background-color: #ff3b30; /* Bouton rouge */
-    color: white;
-    font-size: 1.1em;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #d02f28; /* Rouge plus foncé au survol */
-}
-
-/* Champs d'entrée spécifiques */
-input[type="file"] {
-    border: 1px dashed #ccc; /* Bordure en pointillés pour le champ de fichier */
-}
-
-input[type="number"] {
-    width: 100px;
-}
-
-/* Ajout d'un espacement et amélioration de la mise en page */
-form > div {
-    margin-bottom: 15px;
-}
-
-form > div:last-child {
-    margin-bottom: 0;
-}
-
-/* Messages de succès et d'erreur */
-.success-message {
-    color: green;
-    font-size: 1.2em;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.error-message {
-    color: red;
-    font-size: 1em;
-    text-align: center;
-    margin-top: 20px;
-}
-
-
-    </style>
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <a href="{{ route('appartement.index') }}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
 @endsection
