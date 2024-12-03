@@ -45,7 +45,7 @@ text-shadow: 0px 0 20px black;">
                     <td>{{ $petitDejeuner->nom }}</td>
                     <td>{{ $petitDejeuner->description }}</td>
                     <td>{{ $petitDejeuner->prix }} د.م</td>
-                    <td><img src="{{ asset('storage/' . $petitDejeuner->image) }}" alt="Image" width="100"></td>
+                    <td><img src="{{ secure_asset('storage/'.$room->image) }}" alt="Image" width="100"></td>
                     <td>
                         <a href="#" class="btn btn-danger">Suuprimer</a>
                     </td>

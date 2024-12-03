@@ -45,7 +45,8 @@ Liste des Brunchs    </h2>
                     <td>{{ $brunch->nom }}</td>
                     <td>{{ \Illuminate\Support\Str::limit($brunch->description, 50) }}</td>
                     <td>{{ $brunch->prix }} MAD</td>
-                    <td><img src="{{ asset('storage/' . $brunch->image) }}" alt="Image" width="100"></td>
+                    <td><img src="{{ secure_asset('storage/'.$room->image) }}" alt="{{ $room->nom }}"width="100"></td>
+
                     <td>
                         <a href="#" class="btn btn-danger">Supprimer</a>
                     </td>
