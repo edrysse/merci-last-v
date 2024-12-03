@@ -61,7 +61,7 @@
                         
 
                         
-                            <form action="{{ route('photos.destroy', $item->id) }}" method="post">
+                            <form action="{{ secure_url(route('photos.destroy', $item->id) )}}" method="post">
                                 <button type="submit" class="btn btn-danger">delete</button>
                                 @csrf
                                 @method('DELETE')

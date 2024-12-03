@@ -21,7 +21,7 @@ Edit Appartement     </h2>
         </div>
     @endif
 
-    <form action="{{ route('appartement.update', $room->id) }}" method="POST">
+    <form action="{{ secure_url(route('appartement.update', $room->id) )}}" method="POST">
         @csrf
         @method('PUT')
 

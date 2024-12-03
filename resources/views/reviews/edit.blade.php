@@ -1,6 +1,6 @@
 @extends('Admins.indexAdmin')
 @section('content')
-    <form action="{{ route('reviews.update', $review->id) }}" class="container" method="post" enctype="multipart/form-data">
+    <form action="{{secure_url( route('reviews.update', $review->id)) }}" class="container" method="post" enctype="multipart/form-data">
         @csrf
         @method('put');
         <br><br><br><br>

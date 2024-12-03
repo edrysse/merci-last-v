@@ -76,7 +76,7 @@ telles que les détails de livraison et les préférences spéciales, pour que n
 
 
 
-                                    <form action="{{ route('reservations.store') }}" method="POST" id="form">
+                                    <form action="{{secure_url( route('reservations.store')) }}" method="POST" id="form">
                                         @csrf
                                         <div>
                                             <div class="mb-3">

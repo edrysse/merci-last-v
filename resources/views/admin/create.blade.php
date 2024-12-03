@@ -21,7 +21,7 @@
         </div>
     @endif
 
-    <form action="{{ route('appartements.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ secure_url(route('appartements.store') )}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">

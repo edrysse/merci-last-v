@@ -33,7 +33,7 @@
                 <td>{{ $room->price }} درهم</td>
                 <td>
                     <a href="{{ route('admin.rooms.edit', $room->id) }}" class="btn btn-primary btn-sm">تعديل</a>
-                    <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" style="display:inline-block;">
+                    <form action="{{secure_url( route('admin.rooms.destroy', $room->id)) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('هل أنت متأكد؟')">حذف</button>

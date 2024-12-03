@@ -1,6 +1,6 @@
 @extends('Admins.indexAdmin')
 @section('content')
-    <form action="{{ route('repas.store') }}" class="container" method="post" enctype="multipart/form-data">
+    <form action="{{ secure_url(route('repas.store') )}}" class="container" method="post" enctype="multipart/form-data">
         @csrf
         <br />
         <br />

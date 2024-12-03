@@ -3,7 +3,7 @@
 @section('content')
     <h1>Modifier l'Appartement</h1>
 
-    <form action="{{ route('appartements.update', $appartement->id) }}" method="POST">
+    <form action="{{ secure_url(route('appartements.update', $appartement->id)) }}" method="POST">
         @csrf
         @method('PUT')
 
