@@ -37,7 +37,7 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                 <div class="p-3 bg-light mb-3">
                     <h5 class="promotext" style="text-align: center;" class=" mb-0">Avez-vous un code promo? <a id="promo" onclick="event.preventDefault(); return false;" style="color: #cf2227; " href=""><span class="promocode" >Cliquez ici pour saisir votre code</span></a></h5>
                 </div>
-                <form action="{{ route('coupon.add') }}">
+                <form action="{{secure_url( route('coupon.add')) }}">
                     <div class="py-3 bg-light mb-3 cardcoupon" id="coupon" style="display: none">
                         <input type="text" class="form-control" name="code" placeholder="Saisir le code promo">   
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4" style="    margin: 20px auto 0;">
@@ -104,7 +104,7 @@ telles que les détails de livraison et les préférences spéciales, pour que n
                                         @endif
 
 
-                                        <form action="{{ route('checkout.store') }}" method="post" id="form">
+                                        <form action="{{ secure_url(route('checkout.store')) }}" method="post" id="form">
                                         @csrf
                                             <div>
                                                 <div class="row">

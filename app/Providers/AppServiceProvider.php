@@ -21,9 +21,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFour();
-        if (app()->environment('production')) {
+        if (app()->environment(['local', 'testing'])) {
+            // لا تفرض HTTPS أثناء العمل محليًا
+            URL::forceScheme('http');
+        } else {
             URL::forceScheme('https');
         }
+
     }
 
 }
