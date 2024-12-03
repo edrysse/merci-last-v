@@ -127,11 +127,7 @@
 
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: #d0d7ff">&times;</a>
 
-    <div style="    display: flex;
-    flex-direction: column;
-    align-items: center;">
-    <img src="clientpage/images/MERCI_IMG/Logo-Merci.png" alt="" width="200px">
-    </div>
+ 
 
     <ul class="nav">
 
@@ -234,7 +230,7 @@
             </a>
         </li>
 
-        <li class="nav-item menu-items" style="margin-top: 50px;">
+        <li class="nav-item menu-items" >
             <span class="barre"></span>
             <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
