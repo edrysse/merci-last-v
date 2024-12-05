@@ -26,8 +26,8 @@ create petits De jeuner     </h2>
         </div>
 
         <div class="form-group">
-            <label for="prix">prix</label>
-            <input type="number" name="prix" id="prix" class="form-control" required>
+            <label for="prix">Prix</label>
+            <input type="number" name="prix" class="form-control" id="prix" required>
         </div>
 
         <div class="form-group">

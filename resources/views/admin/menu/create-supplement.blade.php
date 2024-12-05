@@ -1,6 +1,7 @@
 <!-- resources/views/admin/menu/create-supplement.blade.php -->
 @extends('Admins.indexAdmin')
 @section('content')
+<div class="container">
 
 <br><br><br><br>
 
@@ -36,4 +37,5 @@ create brunch     </h2>
 
         <button type="submit" class="btn btn-primary">Create Supplement</button>
     </form>
+</div>
 @endsection

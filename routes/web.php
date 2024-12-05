@@ -144,54 +144,51 @@ Route::post('/reservations', [ReservationController::class, 'store'])->name('res
 
 
 
-// مسارات إدارة الشقق
-Route::prefix('appartements')->group(function () {
-    Route::get('/', [CreateAppartementController::class, 'index'])->name('appartements.index');
-    Route::get('/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
-    Route::post('/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
-    Route::get('/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
-    Route::put('/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
-    Route::delete('/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
-    Route::resource('/', CreateAppartementController::class);
-});
 
-// مسارات إدارة الحجز
+
+Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
+Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
+Route::resource('appartements', CreateAppartementController::class);
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
-// مسارات إدارة التطبيق بشكل عام
-Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
-Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
-Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
+Route::get('/appartements', [CreateAppartementController::class, 'index'])->name('appartements.index');
+Route::get('/appartements/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
+Route::post('/appartements', [CreateAppartementController::class, 'store'])->name('appartements.store');
+Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit'])->name('appartements.edit');
+Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
+Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
+
+// routes/web.php
+Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
 
 
-// مسارات عرض قائمة الطعام
+Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
+Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
+
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
 
-// مسارات إدارة قائمة الطعام في لوحة التحكم
+
 Route::prefix('admin/menu')->group(function () {
+    // مسارات إنشاء وتخزين PetitsDejeuners
     Route::get('create-petits-dejeuner', [MenuController::class, 'createPetitsDejeuner'])->name('admin.menu.create-petits-dejeuner');
     Route::post('store-petits-dejeuner', [MenuController::class, 'storePetitsDejeuner'])->name('admin.menu.store-petits-dejeuner');
+
+    // إضافة مسار لعرض جميع الـ PetitsDejeuners
     Route::get('petits-dejeuners', [MenuController::class, 'indexPetitsDejeuners'])->name('admin.menu.petits-dejeuners.index');
 
+    // مسارات إنشاء وتخزين Brunch
     Route::get('create-brunch', [MenuController::class, 'createBrunch'])->name('admin.menu.create-brunch');
     Route::post('store-brunch', [MenuController::class, 'storeBrunch'])->name('admin.menu.store-brunch');
 
+    // مسارات إنشاء وتخزين Supplement
     Route::get('create-supplement', [MenuController::class, 'createSupplement'])->name('admin.menu.create-supplement');
     Route::post('store-supplement', [MenuController::class, 'storeSupplement'])->name('admin.menu.store-supplement');
+
+    // إضافة مسار لعرض قائمة supplements
     Route::get('supplements', [MenuController::class, 'indexSupplements'])->name('admin.menu.supplements.index');
-    Route::get('brunches', [MenuController::class, 'indexbrunches'])->name('admin.menu.brunches.index');
-});
+     // إضافة مسار لعرض قائمة supplements
+     Route::get('brunches', [MenuController::class, 'indexbrunches'])->name('admin.menu.brunches.index');
+    });
 
-// مسارات إدارة الغرف في لوحة التحكم
-Route::get('/admin/rooms', [AppartementController::class, 'adminRooms'])->name('admin.rooms.index');
 
-// مسار اختبار
-Route::get('/testy', function () {
-    return 'تم تحميل الصفحة بنجاح!';
-});
 
-// مسارات إدارة الشقق (إعادة تعريف مختصرة)
-Route::resource('appartement', AppartementController::class);
-Route::get('appartement/edit/{id}', [AppartementController::class, 'edit'])->name('appartement.edit');
-Route::delete('appartement/{id}', [AppartementController::class, 'destroy'])->name('appartement.destroy');
-Route::get('appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
