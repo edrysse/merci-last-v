@@ -50,11 +50,12 @@ List de Supplements    </h2>
                 <td>{{ $supplement->prix }} DHs</td>
                 <td><img src="{{ asset('storage/' . $supplement->image) }}" width="100" alt="{{ $supplement->nom }}"></td>
                 <td class="action-buttons">
-                    <form action="{{ secure_url(route('supplement.destroy', $supplement->id)) }}" method="POST" style="display: inline;">
+                    <form action="{{ secure_url(route('supplements.destroy', $supplement->id)) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn delete">Supprimer</button>
                     </form>
+                    
                 </td>
             </tr>
             @endforeach
