@@ -27,7 +27,7 @@
     <h2 class="tit6 t-center" style="    font-size: 3rem;
     text-align: center;
     text-shadow: 0px 0 20px black;">
-List of Supplements    </h2>
+List de Supplements    </h2>
     </section>
     <a href="{{ route('admin.menu.create-supplement') }}" class="btn btn-primary">Ajouter un supplmet </a>
 
@@ -50,8 +50,7 @@ List of Supplements    </h2>
                 <td>{{ $supplement->prix }} DHs</td>
                 <td><img src="{{ asset('storage/' . $supplement->image) }}" width="100" alt="{{ $supplement->nom }}"></td>
                 <td class="action-buttons">
-                    <a href="{{ route('appartements.edit', $appartement->id) }}" class="btn edit">Modifier</a>
-                    <form action="{{ secure_url(route('appartements.destroy', $appartement->id)) }}" method="POST" style="display: inline;">
+                    <form action="{{ secure_url(route('supplement.destroy', $supplement->id)) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn delete">Supprimer</button>

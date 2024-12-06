@@ -50,8 +50,7 @@ text-shadow: 0px 0 20px black;">
                     <td><img src="{{ secure_asset('storage/' . $petitDejeuner->image) }}" alt="Image" width="100"></td>
                    
                     <td class="action-buttons">
-                        <a href="{{ route('appartements.edit', $appartement->id) }}" class="btn edit">Modifier</a>
-                        <form action="{{ secure_url(route('appartements.destroy', $appartement->id)) }}" method="POST" style="display: inline;">
+                        <form action="{{ secure_url(route('petitDejeuner.destroy', $petitDejeuner->id)) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn delete">Supprimer</button>
