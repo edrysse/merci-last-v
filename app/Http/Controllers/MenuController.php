@@ -19,13 +19,11 @@ class MenuController extends Controller
         return view('client.menu.voirmenu', compact('petitsDejeuners', 'brunch', 'supplements'));
     }
 
-    // عرض النماذج لإنشاء Petits Dejeuners
     public function createPetitsDejeuner()
     {
         return view('admin.menu.create-petits-dejeuner');
     }
 
-    // تخزين البيانات الخاصة بـ Petits Dejeuners
     public function storePetitsDejeuner(Request $request)
     {
         $request->validate([
@@ -47,8 +45,6 @@ class MenuController extends Controller
         return redirect()->route('admin.menu.petits-dejeuners.index');
     }
 
-    // تكرار نفس العمليات لـ Brunch و Supplements
-
     public function createBrunch()
     {
         return view('admin.menu.create-brunch');
@@ -62,19 +58,18 @@ class MenuController extends Controller
             'prix' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         $imagePath = $this->uploadImage($request, 'brunches');
-    
+
         Brunch::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
             'image' => $imagePath,
         ]);
-    
+
         return redirect()->route('admin.menu.brunches.index');
     }
-    
 
     public function createSupplement()
     {
@@ -104,58 +99,49 @@ class MenuController extends Controller
 
     public function indexSupplements()
     {
-        // استرجاع جميع الـ supplements من قاعدة البيانات
         $supplements = Supplement::all();
-
-        // تمرير البيانات إلى الـ view لعرضها
         return view('admin.menu.supplements.index', compact('supplements'));
     }
+
     public function indexPetitsDejeuners()
     {
         $petitsDejeuners = PetitsDejeuner::all();
         return view('admin.menu.petits-dejeuners.index', compact('petitsDejeuners'));
     }
-    public function indexbrunches()
-    {
-        // استرجاع جميع الـ brunches من قاعدة البيانات
-        $brunches = Brunch::all();
 
-        // تمرير البيانات إلى الـ view لعرضها
+    public function indexBrunches()
+    {
+        $brunches = Brunch::all();
         return view('admin.menu.brunches.index', compact('brunches'));
     }
+
     private function uploadImage(Request $request, $folder)
     {
         return $request->file('image')->store("images/$folder", 'public');
     }
-    
+
     public function destroySupplement($id)
     {
-        // Fetch and delete the supplement by its ID
         $supplement = Supplement::findOrFail($id);
         $supplement->delete();
-    
-        // Redirect back with a success message
-        return redirect()->route('supplements.index')->with('success', 'Supplement deleted successfully.');
+
+        return redirect()->route('admin.menu.supplements.index')->with('success', 'Supplement deleted successfully.');
     }
+
     public function destroyBrunch($id)
     {
-        // Fetch and delete the brunch item by its ID
         $brunch = Brunch::findOrFail($id);
         $brunch->delete();
-    
-        // Redirect back with a success message
-        return redirect()->route('brunch.index')->with('success', 'Brunch item deleted successfully.');
+
+        return redirect()->route('admin.menu.brunches.index')->with('success', 'Brunch item deleted successfully.');
     }
-    
+
     public function destroyPetitsDejeuners($id)
     {
-        // Fetch and delete the petit item by its ID
         $petitsDejeuner = PetitsDejeuner::findOrFail($id);
         $petitsDejeuner->delete();
-    
-        // Redirect back with a success message
-        return redirect()->route('petit.index')->with('success', 'Petit item deleted successfully.');
+
+        return redirect()->route('admin.menu.petits-dejeuners.index')->with('success', 'Petit item deleted successfully.');
     }
-        
 }
 
