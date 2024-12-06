@@ -188,11 +188,12 @@ Route::prefix('admin/menu')->group(function () {
     Route::get('supplements', [MenuController::class, 'indexSupplements'])->name('admin.menu.supplements.index');
      // إضافة مسار لعرض قائمة supplements
      Route::get('brunches', [MenuController::class, 'indexbrunches'])->name('admin.menu.brunches.index');
-    });
-    Route::resource('supplements', MenuController::class);
+     Route::resource('supplements', MenuController::class);
 
-    Route::resource('brunches', MenuController::class);
-    Route::resource('petit-dejeuners', MenuController::class);
+     Route::resource('brunches', MenuController::class);
+     Route::resource('petit-dejeuners', MenuController::class);
+    });
+   
 
 
 
