@@ -188,13 +188,18 @@ Route::prefix('admin/menu')->group(function () {
     Route::get('supplements', [MenuController::class, 'indexSupplements'])->name('admin.menu.supplements.index');
      // إضافة مسار لعرض قائمة supplements
      Route::get('brunches', [MenuController::class, 'indexbrunches'])->name('admin.menu.brunches.index');
-     Route::resource('supplements', MenuController::class);
+ 
+    });    
+  
+// Petits Dejeuners
+Route::delete('/petits-dejeuners/{id}', [MenuController::class, 'destroy'])->name('petits-dejeuners.destroy');
 
-     Route::resource('brunches', MenuController::class);
-     Route::resource('petit-dejeuners', MenuController::class);
-    });
-   
+// Brunches
 
+Route::delete('/brunches/{id}', [MenuController::class, 'destroy'])->name('brunches.destroy');
+
+// Supplements
+Route::delete('/supplements/{id}', [MenuController::class, 'destroy'])->name('supplements.destroy');
 
 
 
