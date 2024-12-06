@@ -62,18 +62,19 @@ class MenuController extends Controller
             'prix' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $imagePath = $request->file('image')->store('images/brunches', 'public');
-
+    
+        $imagePath = $this->uploadImage($request, 'brunches');
+    
         Brunch::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
             'image' => $imagePath,
         ]);
-
+    
         return redirect()->route('admin.menu.brunches.index');
     }
+    
 
     public function createSupplement()
     {
@@ -122,7 +123,11 @@ class MenuController extends Controller
         // تمرير البيانات إلى الـ view لعرضها
         return view('admin.menu.brunches.index', compact('brunches'));
     }
-
+    private function uploadImage(Request $request, $folder)
+    {
+        return $request->file('image')->store("images/$folder", 'public');
+    }
+    
 
 }
 

@@ -28,7 +28,7 @@ text-shadow: 0px 0 20px black;">
   List de Petits Dejeuners
 </h2>
 </section>
-    <a href="{{ route('admin.menu.create-petits-dejeuner') }}" class="btn btn-primary">إضافة Petit Dejeuner</a>
+    <a href="{{ route('admin.menu.create-petits-dejeuner') }}" class="btn btn-primary">Ajouter un Petit Dejeuner</a>
 
     <table class="table mt-3">
         <thead>
@@ -37,6 +37,8 @@ text-shadow: 0px 0 20px black;">
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Image</th>
+                <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -44,10 +46,16 @@ text-shadow: 0px 0 20px black;">
                 <tr>
                     <td>{{ $petitDejeuner->nom }}</td>
                     <td>{{ $petitDejeuner->description }}</td>
-                    <td>{{ $petitDejeuner->prix }} د.م</td>
+                    <td>{{ $petitDejeuner->prix }} DHs</td>
                     <td><img src="{{ secure_asset('storage/' . $petitDejeuner->image) }}" alt="Image" width="100"></td>
-                    <td>
-                        <a href="#" class="btn btn-danger">Suuprimer</a>
+                   
+                    <td class="action-buttons">
+                        <a href="{{ route('appartements.edit', $appartement->id) }}" class="btn edit">Modifier</a>
+                        <form action="{{ secure_url(route('appartements.destroy', $appartement->id)) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn delete">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

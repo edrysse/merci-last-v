@@ -15,7 +15,8 @@ class PetitsDejeuner extends Model
     // تحديد الأعمدة القابلة للتعبئة
     protected $fillable = [
         'nom',        // اسم الـ Petit Dejeuner
-        'description', // وصف الـ Petit Dejeuner
+        'description', 
+        'prix',
         'image',       // مسار الصورة
     ];
 
