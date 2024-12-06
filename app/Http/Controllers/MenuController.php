@@ -128,6 +128,34 @@ class MenuController extends Controller
         return $request->file('image')->store("images/$folder", 'public');
     }
     
-
+    public function destroySupplement($id)
+    {
+        // Fetch and delete the supplement by its ID
+        $supplement = Supplement::findOrFail($id);
+        $supplement->delete();
+    
+        // Redirect back with a success message
+        return redirect()->route('supplements.index')->with('success', 'Supplement deleted successfully.');
+    }
+    public function destroyBrunch($id)
+    {
+        // Fetch and delete the brunch item by its ID
+        $brunch = Brunch::findOrFail($id);
+        $brunch->delete();
+    
+        // Redirect back with a success message
+        return redirect()->route('brunch.index')->with('success', 'Brunch item deleted successfully.');
+    }
+    
+    public function destroyPetitsDejeuners($id)
+    {
+        // Fetch and delete the petit item by its ID
+        $petitsDejeuner = PetitsDejeuner::findOrFail($id);
+        $petitsDejeuner->delete();
+    
+        // Redirect back with a success message
+        return redirect()->route('petit.index')->with('success', 'Petit item deleted successfully.');
+    }
+        
 }
 
