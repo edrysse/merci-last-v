@@ -159,7 +159,12 @@ Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
 
 // routes/web.php
+// routes/web.php
+Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
 
+
+Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
+Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
 
 Route::prefix('admin/menu')->group(function () {
