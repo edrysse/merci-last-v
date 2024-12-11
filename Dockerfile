@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     unzip \
     git \
     curl \
+    libpq-dev \  
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # تثبيت إضافات PHP المطلوبة
@@ -40,7 +41,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # فتح المنفذ 80 ليتمكن Render من اكتشافه
 EXPOSE 80
-#postgre
+
+# تثبيت إضافات PostgreSQL لـ PHP
 RUN docker-php-ext-install pgsql pdo_pgsql
 
 # تشغيل Nginx و php-fpm معًا
