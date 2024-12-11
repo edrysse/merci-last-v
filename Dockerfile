@@ -40,6 +40,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # فتح المنفذ 80 ليتمكن Render من اكتشافه
 EXPOSE 80
+#postgre
+RUN docker-php-ext-install pgsql pdo_pgsql
 
 # تشغيل Nginx و php-fpm معًا
 CMD service nginx start && php-fpm
