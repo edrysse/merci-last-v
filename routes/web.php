@@ -160,6 +160,8 @@ Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destro
 
 // routes/web.php
 // routes/web.php
+Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
+
 Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
 Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
 Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
