@@ -142,14 +142,11 @@ Route::get('/Menu/Gdrinks', [clientMenu::class, 'index_Gdrinks'])->name('Gdrinks
 Route::get('/Menu/A-La-Carte', [clientMenu::class, 'index_Alacarte'])->name('Alacarte');
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
-
-
-
+// routes/web.php
 
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
 Route::post('/appartements/store', [CreateAppartementController::class, 'store'])->name('appartements.store');
 Route::resource('appartements', CreateAppartementController::class);
-Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 Route::get('/appartements', [CreateAppartementController::class, 'index'])->name('appartements.index');
 Route::get('/appartements/create', [CreateAppartementController::class, 'create'])->name('appartements.create');
@@ -158,17 +155,14 @@ Route::get('/appartements/{id}/edit', [CreateAppartementController::class, 'edit
 Route::put('/appartements/{id}', [CreateAppartementController::class, 'update'])->name('appartements.update');
 Route::delete('/appartements/{id}', [CreateAppartementController::class, 'destroy'])->name('appartements.destroy');
 
-// routes/web.php
-// routes/web.php
+// New routes for AppartementController
 Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
-
 Route::post('appartements/store', [AppartementController::class, 'store'])->name('appartements.store');
 Route::get('/ApparetementIndex', [AppartementController::class, 'index'])->name('Apparetementindex');
 Route::get('/appartement/valid/{id}', [AppartementController::class, 'Validation2'])->name('appartement.appartementValid');
 Route::get('/appartement/admin', [AppartementController::class, 'appartementAdmin'])->name('appartement.admin');
 
-Route::get('/appartement/valid', [AppartementController::class, 'Validation'])->name('appartement.appartementValid');
-Route::get('/ApparetementIndex',[AppartementController::class,'index'])->name('Apparetementindex');
+// Menu routes
 Route::get('/menu/voirmenu', [MenuController::class, 'voirmenu'])->name('client.menu.voirmenu');
 
 Route::prefix('admin/menu')->group(function () {
@@ -188,4 +182,3 @@ Route::prefix('admin/menu')->group(function () {
 Route::delete('/petits-dejeuners/{id}', [MenuController::class, 'destroyPetitsDejeuners'])->name('petits-dejeuners.destroy');
 Route::delete('/brunches/{id}', [MenuController::class, 'destroyBrunch'])->name('brunches.destroy');
 Route::delete('/supplements/{id}', [MenuController::class, 'destroySupplement'])->name('supplements.destroy');
-
