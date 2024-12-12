@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -6,20 +7,20 @@ use App\Models\CreateAppartement;
 
 class CreateAppartementController extends Controller
 {
+    // عرض جميع الغرف
     public function index()
     {
         $rooms = CreateAppartement::all();
         return view('appartement.index', compact('rooms'));
     }
+
+    // عرض صفحة إنشاء غرفة جديدة
     public function create()
     {
+        return view('admin.create');
+    }
 
-
-            return view('admin.create');
-        }
-
-
-
+    // تخزين الغرفة الجديدة في قاعدة البيانات
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -46,12 +47,14 @@ class CreateAppartementController extends Controller
         return redirect()->route('appartements.index')->with('success', 'Appartement créé avec succès !');
     }
 
+    // عرض صفحة تعديل غرفة معينة
     public function edit($id)
     {
         $appartement = CreateAppartement::findOrFail($id);
         return view('admin.edit', compact('appartement'));
     }
 
+    // تحديث الغرفة في قاعدة البيانات
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -65,21 +68,24 @@ class CreateAppartementController extends Controller
 
         $appartement = CreateAppartement::findOrFail($id);
 
-        // Traiter l'image si elle existe
+        // التعامل مع الصورة إذا كانت موجودة
         if ($request->hasFile('image')) {
+            // إذا كانت الصورة جديدة، نقوم بتخزينها
             $validated['image'] = $request->file('image')->store('upload/img', 'public');
         }
 
+        // تحديث البيانات في قاعدة البيانات
         $appartement->update($validated);
 
-        return redirect()->route('Apparetementindex')->with('success', 'Appartement mis à jour avec succès');
+        return redirect()->route('appartements.index')->with('success', 'Appartement mis à jour avec succès');
     }
 
+    // حذف الغرفة
     public function destroy($id)
     {
         $appartement = CreateAppartement::findOrFail($id);
         $appartement->delete();
 
-        return redirect()->route('Apparetementindex')->with('success', 'Appartement supprimé avec succès');
+        return redirect()->route('appartements.index')->with('success', 'Appartement supprimé avec succès');
     }
 }
