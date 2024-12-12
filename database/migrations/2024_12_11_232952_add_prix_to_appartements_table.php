@@ -12,14 +12,22 @@ return new class extends Migration
     public function up()
     {
         Schema::table('appartements', function (Blueprint $table) {
-            $table->decimal('prix', 8, 2)->nullable()->default(0)->change(); // اجعل الحقل اختياريًا أو ذو قيمة افتراضية
+            $table->decimal('prix', 8, 2)->default(0)->nullable();
         });
     }
 
     public function down()
     {
         Schema::table('appartements', function (Blueprint $table) {
-            $table->decimal('prix', 8, 2)->nullable(false)->change(); // يمكنك تعديل القيمة عند التراجع
+            $table->dropColumn('prix');
         });
-    }
-    };
+
+
+    }};
+
+
+    /**
+     * Reverse the migrations.
+     */
+
+
