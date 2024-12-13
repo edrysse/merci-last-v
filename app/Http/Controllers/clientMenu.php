@@ -10,7 +10,7 @@ class clientMenu extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
     public function index()
     {
         $cartItems=Cart::content();
