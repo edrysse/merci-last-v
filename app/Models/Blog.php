@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Blog extends Model
 {
     use HasFactory;
+    
 
     protected $fillable = ['image','titre','id_user','id_category','description'];
         public function user():BelongsTo{
