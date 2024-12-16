@@ -7,7 +7,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class clientMenu extends Controller
 {
-    /**
+    /**y
      * Display a listing of the resource.
      */
 
