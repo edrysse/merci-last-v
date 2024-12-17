@@ -17,7 +17,7 @@
                 {{-- Merci Laayoune --}}
                 <img class="mercilogo-autre"  src="clientpage/images/MERCI_IMG/LOGO/Logo-Merci-b1.png" alt="" >
             </div>
-
+ 
             <div style="    display: flex;
             align-items: center;">
                 <a href="https://www.facebook.com/mercilaayoune"><img src="clientpage/images/MERCI_IMG/social-media-merci/facebook-app-symbol-merci.png" alt="" width="22px"></a>
