@@ -55,7 +55,7 @@ List de Supplements    </h2>
                         @method('DELETE')
                         <button type="submit" class="btn delete">Supprimer</button>
                     </form>
-                    
+
                 </td>
             </tr>
             @endforeach

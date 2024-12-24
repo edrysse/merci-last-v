@@ -38,7 +38,7 @@
                         <div>
                             En face hotel nagjir, Mahaj mohamed VI, Ave Essmara, Laayoune 70000
                         </div>
-                        
+
                     </li>
 
                     <li class="txt14 m-b-14">
@@ -46,7 +46,7 @@
                         <div>
                             080-8616369
                         </div>
-                        
+
                     </li>
 
                     <li class="txt14 m-b-14">
@@ -54,7 +54,7 @@
                         <div>
                             <a href="" style="color: #999999;">Contact@mercilaayoune.com</a>
                         </div>
-                        
+
                     </li>
 
                     <li class="txt14 m-b-14">
@@ -62,7 +62,7 @@
                         <div>
                             <a href="https://www.facebook.com/mercilaayoune" style="color: #999999;">mercilaayoune</a>
                         </div>
-                        
+
                     </li>
 
                     <li class="txt14 m-b-14">
@@ -70,7 +70,7 @@
                         <div>
                             <a href="https://www.instagram.com/mercilaayoune1" style="color: #999999;">mercilaayoune1</a>
                         </div>
-                        
+
                     </li>
 
                     <li class="txt14 m-b-14">
@@ -87,7 +87,7 @@
                         </div>
                     </li>
 
-                    
+
                 </ul>
 
 
@@ -130,8 +130,7 @@
                         <img src={{ asset('clientpage/images/photo-gallery-thumb-03.jpg') }} alt="GALLERY">
                     </a>
 
-                    <a class="item-gallery-footer wrap-pic-w" href={{ asset('clientpage/images/photo-gallery-04.jpg') }}
-                        data-lightbox="gallery-footer">
+                    <a class="item-gallery-footer wrap-pic-w" href={{ asset('clientpage/images/photo-gallery-04.jpg') }} data-lightbox="gallery-footer">
                         <img src={{ asset('clientpage/images/photo-gallery-thumb-04.jpg') }} alt="GALLERY">
                     </a>
 
@@ -190,15 +189,15 @@
 
 
 <span style="display:block;
-            width:100%; 
+            width:100%;
             border-top: 1px solid #666666"></span>
         <div class="mini-footer mt-3">
-            
+
             <p>
                 © 2023 <a href="{{ route('clientIndex.index')}}">Merci Laayoune</a>. Tous les droits sont réservés
             </p>
             <p>
-                    <a href="{{ route('politique')}}">politique de confidentialité</a> | <a href="{{ route('Cutilisation') }}">conditions d'utilisation</a> 
+                    <a href="{{ route('politique')}}">politique de confidentialité</a> | <a href="{{ route('Cutilisation') }}">conditions d'utilisation</a>
 
             </p>
         </div>
@@ -211,5 +210,5 @@
 
 
 
-    
+
 </footer>

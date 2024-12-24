@@ -20,7 +20,7 @@
                 <td>{{ $appartement->id }}</td>
                 <td>{{ $appartement->nom }}</td>
                 <td>{{ $appartement->description }}</td>
-                <td>{{ $appartement->prix }} € / nuit</td>
+                <td>{{ $appartement->prix }} MAD/ nuit</td>
                 <td class="action-buttons">
                     <a href="{{ route('appartements.edit', $appartement->id) }}" class="btn edit">Modifier</a>
                     <form action="{{ secure_url(route('appartements.destroy', $appartement->id)) }}" method="POST" style="display: inline;">
